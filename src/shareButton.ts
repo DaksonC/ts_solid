@@ -1,8 +1,12 @@
+import EventHandler from "./eventHandler";
+
 export default class ShareButton {
   url: string;
+  eventHandler: EventHandler;
 
   constructor(url: string) {
     this.url = url;
+    this.eventHandler = new EventHandler();
   }
 
   bind(className: string, socialNetwork: string) {
@@ -15,9 +19,8 @@ export default class ShareButton {
       link = `https://linkedin.com/shareArticle?url=${this.url}`;
     }
 
-    const elements = Array.from(document.querySelectorAll(className));
-    for (const element of elements) {
-      element.addEventListener("click", () => window.open(link));
-    }
+    this.eventHandler.addEventListenerToClass(className, "click", () => {
+      window.open(link);
+    });
   }
 };
