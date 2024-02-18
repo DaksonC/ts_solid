@@ -1,12 +1,12 @@
-import EventHandler from "./eventHandler";
+import EventHandler from "./Events/eventHandler";
 
 export default abstract class AbstractShareButton {
   className: string;
   eventHandler: EventHandler;
 
-  constructor(className: string) {
+  constructor(eventHandler: EventHandler, className: string) {
     this.className = className;
-    this.eventHandler = new EventHandler();
+    this.eventHandler = eventHandler;
   }
 
   abstract createAction(): any;
